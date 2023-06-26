@@ -19,7 +19,7 @@ namespace Bot
             DiscordSocketConfig discordSocketConfig = new()
             {
                 UseInteractionSnowflakeDate = false,
-                GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.MessageContent
+                //GatewayIntents = GatewayIntents.AllUnprivileged | GatewayIntents.MessageContent
             };
             _client = new DiscordSocketClient(discordSocketConfig);
 
