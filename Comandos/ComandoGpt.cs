@@ -26,6 +26,13 @@ namespace Bot.Comandos
                             .AddChoice("Padrão", 1)
                             .AddChoice("Tsundere", 2)
                             .WithType(ApplicationCommandOptionType.Integer));
+            globalCommand.AddOption(new SlashCommandOptionBuilder()
+                .WithName("versão")
+                .WithDescription("Versão utilizada do GPT")
+                .WithRequired(true)
+                .AddChoice("3.5", 1)
+                .AddChoice("4", 2)
+                .WithType(ApplicationCommandOptionType.Integer));
             globalCommand.AddOption("mensagem", ApplicationCommandOptionType.String, "Mensagem que será enviada para ChatGPT", isRequired: true);
 
             return globalCommand;
@@ -41,9 +48,11 @@ namespace Bot.Comandos
                 return;
             }
 
-            var msg = comando.Data.Options.ElementAt(1).Value.ToString();
+            var msg = comando.Data.Options.ElementAt(2).Value.ToString();
 
-            var chat = new ConfigBot().ChatGPT();
+            var versao = (long)comando.Data.Options.ElementAt(1).Value;
+
+            var chat = new ConfigBot().ChatGPT(versao);
             var modo = modos.GetValueOrDefault((long)comando.Data.Options.First().Value);
             chat.AppendSystemMessage(modo);
             chat.AppendUserInput(msg);
