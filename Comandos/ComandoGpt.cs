@@ -8,7 +8,7 @@ namespace Bot.Comandos
         Dictionary<long, string> modos = new Dictionary<long, string>()
         {
             { 1, "Responda todas as respostas normal" },
-            { 2, "Responda todas as respostas como uma Tsundere" }
+            { 2, "Responda todas as respostas como o Yoda de Star Wars" }
         };
         public ComandoGpt()
         {
@@ -24,7 +24,7 @@ namespace Bot.Comandos
                             .WithDescription("Modo como o GPT irá responder")
                             .WithRequired(true)
                             .AddChoice("Padrão", 1)
-                            .AddChoice("Tsundere", 2)
+                            .AddChoice("Yoda", 2)
                             .WithType(ApplicationCommandOptionType.Integer));
             globalCommand.AddOption(new SlashCommandOptionBuilder()
                 .WithName("versão")
